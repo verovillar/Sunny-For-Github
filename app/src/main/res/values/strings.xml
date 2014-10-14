@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Sunny</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Menu label to fetch updated weather info from the server -->
+    <string name="action_refresh" translatable="false">Refresh</string>
+    <string name="title_activity_detail">Details</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Label for the location preference [CHAR LIMIT=3] -->
+    <string name="pref_location_label">Location</string>
+
+    <!-- Key name for storing location in SharedPreferences [CHAR LIMIT=NONE] -->
+    <string name="pref_location_key" translatable="false">location</string>
+
+    <!-- Default postal code for location preference [CHAR LIMIT=NONE] -->
+    <string name="pref_location_default" translatable="false">94043</string>
+
+    <string name="pref_unit_key" tranlateable="false">units</string>
+    <string name="pref_unit_label" tranlateable="false">Temperature Units</string>
+
+    <string name="pref_units_metric" tranlatable="false">metric</string>
+    <string name="pref_units_imperial" tranlatable="false">imperial</string>
+
+    <string name="action_preferred_location_map">View Preferred Location</string>
+
+    <string name="action_share">Share</string>
+</resources>
