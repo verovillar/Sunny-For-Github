@@ -16,7 +16,32 @@ public class MainActivity extends ActionBarActivity {
     private final String LOG_TAG = MainActivity.class.getSimpleName();
 
     @Override
+    protected void onPause() {
+        Log.d(LOG_TAG, "onPause.");
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        Log.d(LOG_TAG, "onResume.");
+        super.onResume();
+    }
+
+    @Override
+    protected void onStop() {
+        Log.d(LOG_TAG, "onStop.");
+        super.onStop();
+    }
+
+    @Override
+    protected void onStart() {
+        Log.d(LOG_TAG, "onStart.");
+        super.onStart();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(LOG_TAG, "onCreate.");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
@@ -26,6 +51,11 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        Log.d(LOG_TAG, "onDestroy.");
+        super.onDestroy();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
