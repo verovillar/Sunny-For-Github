@@ -27,6 +27,12 @@
             android:layout_height="wrap_content"
             android:id="@+id/list_item_date_textview"
             android:text="Tomorrow"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/list_item_forecast_textview"
+            android:text="Clear"
+            />
 
 
     </LinearLayout>
