@@ -1,6 +1,3 @@
-/**
- * Created by Veronica on 11/14/14.
- */
 /*
  * Copyright (C) 2014 The Android Open Source Project
  *
@@ -87,7 +84,7 @@ public class Utility {
      * @param context Context to use for resource localization
      * @param dateStr The db formatted date string, expected to be of the form specified
      *                in Utility.DATE_FORMAT
-     * @return
+     * @return formattedDate
      */
     public static String getDayName(Context context, String dateStr) {
         SimpleDateFormat dbDateFormat = new SimpleDateFormat(Utility.DATE_FORMAT);
@@ -152,7 +149,7 @@ public class Utility {
                 context.getString(R.string.pref_location_default));
     }
 
-    static String formatTemperature(double temperature, boolean isMetric) {
+    static String formatTemperature(Context context, double temperature, boolean isMetric) {
         double temp;
         if (!isMetric) {
             temp = 9*temperature/5+32;
@@ -160,7 +157,7 @@ public class Utility {
             temp = temperature;
         }
 
-        return String.format("%.0f", temp);
+        return context.getString(R.string.format_temperature, temp);
     }
 
     static String formatDate(String dateString) {
