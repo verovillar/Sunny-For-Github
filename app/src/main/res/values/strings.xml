@@ -42,4 +42,7 @@
 
     <!-- Temperature formats -->
     <string name="format_temperature"><xliff:g id="temp">%1.0f</xliff:g>\u00B0</string>
+
+    <!-- Humidity format -->
+    <string name="format_humidity">Humidity: <xliff:g id="humidity">%1.0f</xliff:g>\u0025</string>
 </resources>
