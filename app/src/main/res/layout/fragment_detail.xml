@@ -40,16 +40,14 @@
                     android:text="High"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/detail_high_textview"
-                    android:textSize="150dp" />
+                    android:id="@+id/detail_high_textview" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Low"
                     android:id="@+id/detail_low_textview"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="40dp" />
+                    android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
 
@@ -64,7 +62,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/detail_icon"
-                    android:src="@android:drawable/sym_def_app_icon"
                     android:contentDescription="Weather Image" />
 
                 <TextView

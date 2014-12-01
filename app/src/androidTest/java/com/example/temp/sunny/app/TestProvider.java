@@ -4,7 +4,6 @@ import android.annotation.TargetApi;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.test.AndroidTestCase;
 import android.util.Log;
@@ -12,7 +11,6 @@ import android.os.Build;
 
 import com.example.temp.sunny.app.data.WeatherContract.LocationEntry;
 import com.example.temp.sunny.app.data.WeatherContract.WeatherEntry;
-import com.example.temp.sunny.app.data.WeatherDbHelper;
 
 /**
  * Created by davillar on 10/20/2014.
