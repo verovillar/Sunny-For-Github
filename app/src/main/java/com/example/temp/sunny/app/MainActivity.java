@@ -9,12 +9,14 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements ForecastFragment.Callback {
 
     private final String LOG_TAG = MainActivity.class.getSimpleName();
     private boolean mTwoPane;
+
 
     @Override
     protected void onPause() {
@@ -106,6 +108,25 @@ public class MainActivity extends ActionBarActivity {
             startActivity(mapViewIntent);
         } else {
             Log.d(LOG_TAG, "Couldn't call " + preferredLocation + ", no activity available to handle this request.");
+        }
+    }
+
+    @Override
+    public void onItemSelected(String date) {
+
+
+        if (mTwoPane) {
+            DetailFragment forecastDetails = DetailFragment.newInstance(date);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.weather_detail_container, forecastDetails)
+                    .commit();
+        } else {
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(this, date, duration);
+            toast.show();
+            Intent intent = new Intent(this, DetailActivity.class);
+            intent.putExtra(DetailActivity.DATE_KEY, date);
+            startActivity(intent);
         }
     }
 }

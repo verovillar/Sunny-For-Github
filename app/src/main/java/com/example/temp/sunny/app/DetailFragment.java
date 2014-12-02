@@ -37,7 +37,8 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 
 
     private String mForecast,
-            mLocation;
+            mLocation,
+            mDateStr;
     private ImageView mIconView;
     private TextView mDateView,
             mFriendlyDateView,
@@ -56,6 +57,29 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         this.setHasOptionsMenu(true);
     }
 
+    /**
+     * Create a new instance of ForecastFragment, initialized to
+     * show the text at 'index'.
+     */
+    public static DetailFragment newInstance(String date) {
+        DetailFragment f = new DetailFragment();
+
+        // Supply index input as an argument
+        Bundle args = new Bundle();
+        args.putString(DetailActivity.DATE_KEY, date);
+        f.setArguments(args);
+
+        return f;
+    }
+
+    public String getShownDate() {
+        Bundle arguments = getArguments();
+        if (arguments != null && arguments.containsKey(DetailActivity.DATE_KEY)) {
+            getArguments().getString(DetailActivity.DATE_KEY);
+        }
+        return null;
+    }
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         outState.putString(DetailActivity.LOCATION_KEY, mLocation);
@@ -65,12 +89,19 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     @Override
     public void onResume() {
         super.onResume();
-        Intent intent = getActivity().getIntent();
-        if (intent != null && intent.hasExtra(DetailActivity.DATE_KEY) &&
-                mLocation != null &&
+        if (mLocation != null &&
                 !mLocation.equals(Utility.getPreferredLocation(getActivity()))) {
-            getLoaderManager().restartLoader(DETAIL_FORECAST_LOADER, null, this);
+            if (getActivity().findViewById(R.id.weather_detail_container) != null && getShownDate() != null ) {
+                getLoaderManager().restartLoader(DETAIL_FORECAST_LOADER, null, this);
+            } else {
+                Intent intent = getActivity().getIntent();
+                if (intent != null && intent.hasExtra(DetailActivity.DATE_KEY)) {
+                    getLoaderManager().restartLoader(DETAIL_FORECAST_LOADER, null, this);
+                }
+            }
         }
+
+
     }
 
     @Override
@@ -108,6 +139,13 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        String date = getShownDate();
+        if (date != null) {
+            mDateStr = date;
+        }
+
+
         View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
 
         mDateView = (TextView) rootView.findViewById(R.id.detail_date_textview);
@@ -141,7 +179,6 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
 
-        Log.v(LOG_TAG, "In onCreateLoader");
         Intent intent = getActivity().getIntent();
         if( intent == null || !intent.hasExtra(DetailActivity.DATE_KEY) ) {
             return null;
@@ -169,7 +206,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         String sortOrder = WeatherContract.WeatherEntry.COLUMN_DATETEXT + " ASC";
 
         mLocation = Utility.getPreferredLocation(getActivity());
-        Uri weatherForLocationUri = WeatherContract.WeatherEntry.buildWeatherLocationWithDate(mLocation, forecastDate);
+        Uri weatherForLocationUri = WeatherContract.WeatherEntry.buildWeatherLocationWithDate(mLocation, mDateStr);
 
         Log.d("DetailFragment", "Uri: " + weatherForLocationUri.toString());
 

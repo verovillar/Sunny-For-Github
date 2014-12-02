@@ -4,20 +4,14 @@ package com.example.temp.sunny.app;
  * Created by davillar on 9/24/2014.
  */
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.app.Activity;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -26,23 +20,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -54,6 +33,20 @@ import com.example.temp.sunny.app.data.WeatherContract.WeatherEntry;
  * A placeholder fragment containing a simple view.
  */
 public class ForecastFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
+
+    Callback mCallback;
+
+    /**
+     * A callback interface that all activities containing this fragment must
+     * implement. This mechanism allows activities to be notified of item
+     * selections.
+     */
+    public interface Callback {
+        /**
+         * Callback for when an item has been selected.
+         */
+        public void onItemSelected(String date);
+    }
 
     private String mLocation;
     private static final int FORECAST_LOADER = 0;
@@ -88,6 +81,16 @@ public class ForecastFragment extends Fragment implements LoaderManager.LoaderCa
     public static ForecastAdapter mForecastAdapter;
 
     public ForecastFragment() {
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mCallback = (Callback) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implement OnArticleSelectedListener");
+        }
     }
 
     @Override
@@ -150,24 +153,15 @@ public class ForecastFragment extends Fragment implements LoaderManager.LoaderCa
         ListView listView = (ListView) rootView.findViewById(R.id.listview_forecast);
         listView.setAdapter(mForecastAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                //SimpleCursorAdapter adapter = (SimpleCursorAdapter)parent.getAdapter();
-                //Cursor cursor = adapter.getCursor();
                 Cursor cursor = mForecastAdapter.getCursor();
                 if (cursor != null && cursor.moveToPosition(position)) {
 
-                    Context context = getActivity();
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(context, cursor.getString(COL_WEATHER_DATE), duration);
-                    toast.show();
-
-
-                    Intent intent = new Intent(getActivity(), DetailActivity.class)
-                            .putExtra(DetailActivity.DATE_KEY, cursor.getString(COL_WEATHER_DATE));
-
-                    startActivity(intent);
+                    String forecastDate = cursor.getString(COL_WEATHER_DATE);
+                    mCallback.onItemSelected(forecastDate);
                 }
             }
         });
