@@ -1,0 +1,27 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:divider="?android:attr/dividerHorizontal"
+    tools:context=".MainActivity"
+    android:orientation="horizontal" >
+
+    <!--
+    This layout is a two-pane layout for the Sunshine master/detail flow.
+    -->
+    <fragment
+        android:id="@+id/fragment_forecast"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:name="com.example.temp.sunny.app.ForecastFragment"
+        tools:layout="@android:layout/list_content"/>
+
+    <FrameLayout
+        android:id="@+id/weather_detail_container"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="4" />
+
+</LinearLayout>
