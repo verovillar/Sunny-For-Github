@@ -222,6 +222,11 @@ public class ForecastFragment extends Fragment implements LoaderManager.LoaderCa
     public void onLoadFinished(Loader<Cursor> loader, Cursor data)
     {
         mForecastAdapter.swapCursor(data);
+        if (mPosition != ListView.INVALID_POSITION) {
+            // If we don't need to restart the loader, and there's a desired position to restore
+            // to, do so
+            mListView.setSelection(mPosition);
+        }
     }
 
     @Override
