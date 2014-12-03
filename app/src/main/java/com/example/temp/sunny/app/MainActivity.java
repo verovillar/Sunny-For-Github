@@ -17,31 +17,6 @@ public class MainActivity extends ActionBarActivity implements ForecastFragment.
     private final String LOG_TAG = MainActivity.class.getSimpleName();
     private boolean mTwoPane;
 
-
-    @Override
-    protected void onPause() {
-        Log.d(LOG_TAG, "onPause.");
-        super.onPause();
-    }
-
-    @Override
-    protected void onResume() {
-        Log.d(LOG_TAG, "onResume.");
-        super.onResume();
-    }
-
-    @Override
-    protected void onStop() {
-        Log.d(LOG_TAG, "onStop.");
-        super.onStop();
-    }
-
-    @Override
-    protected void onStart() {
-        Log.d(LOG_TAG, "onStart.");
-        super.onStart();
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(LOG_TAG, "onCreate.");
@@ -70,7 +45,6 @@ public class MainActivity extends ActionBarActivity implements ForecastFragment.
 
     @Override
     protected void onDestroy() {
-        Log.d(LOG_TAG, "onDestroy.");
         super.onDestroy();
     }
 

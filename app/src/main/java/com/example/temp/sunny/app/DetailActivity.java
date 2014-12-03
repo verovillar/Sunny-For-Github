@@ -10,7 +10,6 @@ import android.view.MenuItem;
 public class DetailActivity extends ActionBarActivity {
 
     public static final String DATE_KEY = "forecast_date";
-    public static final String LOCATION_KEY = "location";
 
 
     @Override
@@ -18,8 +17,9 @@ public class DetailActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         if (savedInstanceState == null) {
+            String date = getIntent().getStringExtra(DetailActivity.DATE_KEY);
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.weather_detail_container, new DetailFragment())
+                    .add(R.id.weather_detail_container, DetailFragment.newInstance(date))
                     .commit();
         }
     }

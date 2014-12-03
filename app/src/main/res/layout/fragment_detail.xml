@@ -14,13 +14,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tomorrow"
             android:id="@+id/detail_day_textview" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="date"
             android:id="@+id/detail_date_textview" />
 
         <!-- Main content: high, low, art, weather state -->
@@ -37,7 +35,6 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="High"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/detail_high_textview" />
@@ -45,7 +42,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Low"
                     android:id="@+id/detail_low_textview"
                     android:textColor="@android:color/darker_gray" />
 
@@ -67,7 +63,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Description"
                     android:id="@+id/detail_forecast_textview"/>
             </LinearLayout>
 
@@ -76,19 +71,16 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Humidity"
             android:id="@+id/detail_humidity_textview" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Wind"
             android:id="@+id/detail_wind_textview" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pressure"
             android:id="@+id/detail_pressure_textview" />
 
     </LinearLayout>
