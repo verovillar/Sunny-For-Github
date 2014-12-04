@@ -65,4 +65,9 @@
         Pressure: <xliff:g id="pressure">%1.0f</xliff:g> hPa
     </string>
 
+    <!-- Talkback Forecast Description -->
+    <string name="content_description_forecast_list_item">
+        Forecast on %1$s is %2$s. Maximum temperature: %3$s. Minimum temperature: %4$s.
+    </string>
+
 </resources>
