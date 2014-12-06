@@ -275,7 +275,6 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         if (mShareActionProvider != null) {
             mShareActionProvider.setShareIntent(createShareForecastIntent());
         }
-
     }
 
     @Override
