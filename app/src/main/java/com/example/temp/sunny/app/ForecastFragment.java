@@ -5,6 +5,7 @@ package com.example.temp.sunny.app;
  */
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ import android.widget.ListView;
 import com.example.temp.sunny.app.data.WeatherContract;
 import com.example.temp.sunny.app.data.WeatherContract.LocationEntry;
 import com.example.temp.sunny.app.data.WeatherContract.WeatherEntry;
+import com.example.temp.sunny.app.service.SunshineService;
 
 import java.util.Date;
 
@@ -203,7 +205,10 @@ public class ForecastFragment extends Fragment implements LoaderManager.LoaderCa
     public void updateWeather() {
 
         String location = Utility.getPreferredLocation(getActivity());
-        new FetchWeatherTask(getActivity()).execute(location);
+        Intent intent = new Intent(getActivity(), SunshineService.class);
+        intent.putExtra(SunshineService.LOCATION_QUERY_EXTRA, location);
+        getActivity().startService(intent);
+
     }
 
 
